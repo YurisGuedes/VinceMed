@@ -34,13 +34,18 @@ function render(){
     document.getElementById('p-list').innerHTML=p.tags.map(t=>`<span>${t}</span>`).join('');
     s.classList.remove('out');},220);
 }
-document.getElementById('next').addEventListener('click',()=>{idx=(idx+1)%N;render();});
-document.getElementById('prev').addEventListener('click',()=>{idx=(idx-1+N)%N;render();});
+function goNext(){idx=(idx+1)%N;render();}
+function goPrev(){idx=(idx-1+N)%N;render();}
+document.getElementById('next').addEventListener('click',goNext);
+document.getElementById('prev').addEventListener('click',goPrev);
+let _tx=0;
+stage.addEventListener('touchstart',e=>{_tx=e.touches[0].clientX;},{passive:true});
+stage.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-_tx;if(Math.abs(dx)>40){dx<0?goNext():goPrev();}},{passive:true});
 render();
 
 // nav scroll state
 const nav=document.getElementById('nav'), heroEl=document.getElementById('topo');
-function navState(){const past=scrollY>heroEl.offsetHeight-90;nav.classList.toggle('scrolled',scrollY>40);nav.classList.toggle('over',!past);}
+function navState(){const inHero=scrollY<heroEl.offsetHeight-90;const atTop=scrollY<10;nav.classList.toggle('over',inHero);nav.classList.toggle('at-top',atTop);nav.classList.toggle('scrolled',!inHero);}
 navState(); addEventListener('scroll',navState);
 
 // active link
@@ -92,6 +97,21 @@ document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',
   reveal();
   addEventListener('scroll',reveal,{passive:true});
   addEventListener('resize',reveal);
+})();
+
+// ---- contact form → WhatsApp ----
+(function(){
+  const form=document.getElementById('ctaForm');
+  if(!form) return;
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    const nome=document.getElementById('cf-nome').value.trim();
+    const email=document.getElementById('cf-email').value.trim();
+    const tel=document.getElementById('cf-tel').value.trim();
+    const msg=document.getElementById('cf-msg').value.trim();
+    const text=encodeURIComponent(`Olá! Meu nome é ${nome} (${email}${tel?', '+tel:''}).\n\n${msg}`);
+    window.open(`https://wa.me/5500000000000?text=${text}`,'_blank');
+  });
 })();
 
 
