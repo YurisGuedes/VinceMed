@@ -51,7 +51,7 @@
   <div class="hero-content">
     <div class="wrap">
       <div class="hero-left">
-        <h1><span class="wd" style="transition-delay:.28s">Confiança</span> <span class="wd" style="transition-delay:.38s">em</span> <span class="wd dim" style="transition-delay:.5s">cada</span> <span class="wd dim" style="transition-delay:.6s">procedimento.</span></h1>
+        <h1><span class="wd" style="transition-delay:.28s">Confiança</span> <span class="wd" style="transition-delay:.38s">em</span><br class="hero-br"><span style="white-space:nowrap"><span class="wd dim" style="transition-delay:.5s">cada</span> <span class="wd dim" style="transition-delay:.6s">procedimento.</span></span></h1>
         <p>A VinceMed fornece correlatos hospitalares e soluções médicas de alta qualidade para hospitais, clínicas e profissionais de saúde em todo o Brasil.</p>
         <div class="hero-actions">
           <a href="#produtos" class="btn btn-light">Conheça as linhas
@@ -86,7 +86,10 @@
       <p class="products-sub">Soluções para hemodinâmica e cardiologia intervencionista.</p>
     </div>
     <div class="products-grid">
-      <div class="stage fade" id="stage"></div>
+      <div class="stage-wrap">
+        <div class="stage fade" id="stage"></div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
       <div class="pinfo fade d1">
         <div class="swap" id="pswap">
           <span class="eyebrow" id="p-eye">Linha Hemodinâmica</span>
@@ -110,14 +113,12 @@
 <section class="brasil full">
   <div class="wrap">
     <div class="brasil-grid">
-      <div class="brasil-map fade">
-        <img src="/assets/img/mapa.png" alt="Mapa de cobertura nacional VinceMed" loading="lazy">
-        <span class="map-cap">Presença em todas as regiões do país</span>
-      </div>
-      <div class="brasil-txt fade d1">
+      <div class="brasil-txt fade">
         <span class="eyebrow">Cobertura nacional</span>
         <h2 class="htwo">Atendemos<span class="l2">todo o Brasil</span></h2>
         <p>A VinceMed possui uma estrutura preparada para atender clientes em todo o território brasileiro, com agilidade, segurança e excelência no suporte.</p>
+      </div>
+      <div class="brasil-feats fade d2">
         <div class="feats">
           <div class="feat">
             <span class="fi"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span>
@@ -132,6 +133,10 @@
             <div><h4>Suporte especializado</h4><p>Equipe técnica pronta para orientar e acompanhar.</p></div>
           </div>
         </div>
+      </div>
+      <div class="brasil-map fade d1">
+        <img src="/assets/img/mapa.png" alt="Mapa de cobertura nacional VinceMed" loading="lazy">
+        <span class="map-cap">Presença em todas as regiões do país</span>
       </div>
     </div>
   </div>
@@ -218,7 +223,20 @@
       </div>
       <div><h5>Navegação</h5><ul><li><a href="#topo">Início</a></li><li><a href="#sobre">Sobre</a></li><li><a href="#produtos">Produtos</a></li><li><a href="#contato">Contato</a></li></ul></div>
       <div><h5>Produtos</h5><ul><li><a href="#produtos">Fio Guia PTFE</a></li><li><a href="#produtos">Kit Insuflador de Balão</a></li><li><a href="#produtos">Manifold 3 Vias</a></li><li><a href="#produtos">Pulseira de Compressão Radial</a></li></ul></div>
-      <div><h5>Contato</h5><ul><li>+55 (00) 0000-0000</li><li>contato@vincemed.com.br</li><li>Cidade / Estado — Brasil</li></ul></div>
+      <div>
+        <h5>Contato</h5>
+        <ul>
+          <li>+55 (00) 0000-0000</li>
+          <li>contato@vincemed.com.br</li>
+          <li>Cidade / Estado — Brasil</li>
+        </ul>
+        <div class="made-by">
+          <span>Made by</span>
+          <a href="https://www.two7.com.br/" target="_blank" rel="noopener" aria-label="Two7">
+            <img src="/assets/logo/two7-logo-rgb-04.png" alt="Two7" height="18">
+          </a>
+        </div>
+      </div>
     </div>
     <div class="foot-bottom">
       <div class="legal"><a href="#">Política de Privacidade</a><a href="#">Termos de Uso</a></div>

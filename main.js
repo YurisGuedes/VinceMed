@@ -18,9 +18,9 @@ const ARR='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="c
 PRODUCTS.forEach((p,i)=>{
   const c=document.createElement('div'); c.className='pcard'; c.dataset.i=i;
   c.innerHTML=`<img src="${p.img}" alt="${p.title}"><div class="povl"></div><div class="parrow">${ARR}</div><div class="plabel">${p.title}</div>`;
-  c.addEventListener('click',()=>{if(+c.dataset.i!==idx){idx=+c.dataset.i;render();}});
+  c.addEventListener('click',()=>{if(+c.dataset.i!==idx){idx=+c.dataset.i;render();startAuto();}});
   stage.appendChild(c);
-  const d=document.createElement('button'); d.className='dot'; d.addEventListener('click',()=>{idx=i;render();}); dots.appendChild(d);
+  const d=document.createElement('button'); d.className='dot'; d.addEventListener('click',()=>{idx=i;render();startAuto();}); dots.appendChild(d);
 });
 const cards=[...stage.children], dotEls=[...dots.children];
 function render(){
@@ -34,14 +34,37 @@ function render(){
     document.getElementById('p-list').innerHTML=p.tags.map(t=>`<span>${t}</span>`).join('');
     s.classList.remove('out');},220);
 }
-function goNext(){idx=(idx+1)%N;render();}
-function goPrev(){idx=(idx-1+N)%N;render();}
+
+// Auto-scroll carousel
+const progressFill=document.getElementById('progressFill');
+const SLIDE_MS=4000;
+let _autoTimer;
+const _noMotion=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+function resetProgress(){
+  if(!progressFill||_noMotion) return;
+  progressFill.style.transition='none';
+  progressFill.style.width='0%';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    progressFill.style.transition=`width ${SLIDE_MS}ms linear`;
+    progressFill.style.width='100%';
+  }));
+}
+function startAuto(){
+  if(_noMotion) return;
+  clearTimeout(_autoTimer);
+  resetProgress();
+  _autoTimer=setTimeout(()=>{idx=(idx+1)%N;render();startAuto();},SLIDE_MS);
+}
+function goNext(){idx=(idx+1)%N;render();startAuto();}
+function goPrev(){idx=(idx-1+N)%N;render();startAuto();}
 document.getElementById('next').addEventListener('click',goNext);
 document.getElementById('prev').addEventListener('click',goPrev);
 let _tx=0;
 stage.addEventListener('touchstart',e=>{_tx=e.touches[0].clientX;},{passive:true});
 stage.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-_tx;if(Math.abs(dx)>40){dx<0?goNext():goPrev();}},{passive:true});
 render();
+startAuto();
 
 // nav scroll state
 const nav=document.getElementById('nav'), heroEl=document.getElementById('topo');
