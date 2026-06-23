@@ -1,16 +1,28 @@
 const PRODUCTS=[
- {eye:'Linha Hemodinâmica',title:'Fio Guia PTFE',img:'/assets/img/produto-fio-guia.jpg',
+ {eye:'Linha Hemodinâmica',title:'Fio Guia PTFE',img:'/assets/img/produto-fio-guia.png',
   desc:'Fio guia revestido em PTFE com ponta tipo J, diâmetro 0,035" e 260 cm de comprimento, indicado para facilitar a introdução e o posicionamento de cateteres em procedimentos endovasculares. O revestimento em PTFE reduz o atrito e favorece uma navegação suave.',
-  tags:['PTFE','Ponta J 0,035\"','260 cm']},
- {eye:'Linha Hemodinâmica',title:'Kit Insuflador de Balão',img:'/assets/img/produto-insuflador.jpg',
-  desc:'Dispositivo insuflador com manômetro integrado e capacidade de 20 mL/cc, utilizado para insuflar e controlar com precisão a pressão de balões em angioplastia e procedimentos de cardiologia intervencionista.',
-  tags:['20 mL/cc','Manômetro','Uso único']},
- {eye:'Linha Hemodinâmica',title:'Manifold 3 Vias',img:'/assets/img/produto-manifold.jpg',
-  desc:'Manifold de três vias na configuração à direita, estéril e de uso único, para o gerenciamento do fluxo de soluções e o controle de pressão em procedimentos hemodinâmicos. Livre de látex e esterilizado por óxido de etileno.',
-  tags:['3 vias','Estéril (EO)','Livre de látex']},
- {eye:'Linha Hemodinâmica',title:'Pulseira de Compressão Radial',img:'/assets/img/produto-pulseira.jpg',
-  desc:'Pulseira para hemostasia da artéria radial após procedimentos por acesso radial, com insuflação por seringa para uma compressão controlada e gradual. Estéril, de uso único e livre de látex.',
-  tags:['Acesso radial','Hemostasia','Uso único']}
+  tags:['PTFE','Ponta J','0,035" · 260 cm']},
+ {eye:'Linha Hemodinâmica',title:'Insuflador de Balão',img:'/assets/img/produto-insuflador.png',
+  desc:'Insuflador de balão tipo clássico com pressão máxima de 30 ATM, utilizado para insuflar e controlar com precisão a pressão de balões em procedimentos de hemodinâmica e cardiologia intervencionista.',
+  tags:['30 ATM','Tipo Clássico','Uso único']},
+ {eye:'Linha Hemodinâmica',title:'Manifold Vincemed',img:'/assets/img/produto-manifold.png',
+  desc:'Manifold de três vias na configuração RIGHT, estéril e de uso único, para o gerenciamento do fluxo de soluções e o controle de pressão em procedimentos hemodinâmicos. Livre de látex.',
+  tags:['3 vias','Config. RIGHT','Estéril']},
+ {eye:'Linha Hemodinâmica',title:'Pulseira de Compressão Radial',img:'/assets/img/produto-pulseira.png',
+  desc:'Pulseira para hemostasia da artéria radial após procedimentos por acesso radial, com insuflação por seringa para compressão controlada e gradual. Estéril e de uso único.',
+  tags:['Artéria radial','Hemostasia','Uso único']},
+ {eye:'Linha Hospitalar',title:'Cateter IV Periférico',img:'/assets/img/produto-cateter.png',
+  desc:'Cateter intravenoso periférico PRIMACAN de uso único, desenvolvido para acesso venoso periférico seguro e eficiente. Calibre 14G, com design que facilita a introdução e minimiza o trauma vascular.',
+  tags:['14G','PRIMACAN','Acesso IV']},
+ {eye:'Linha Hemodinâmica',title:'Linha de Extensão Alta Pressão',img:'/assets/img/produto-linha-extensao.png',
+  desc:'Linha de extensão de alta pressão com resistência de até 1200 PSI e conector valvulado, em 120 cm de comprimento. Indicada para conexão entre dispositivos em procedimentos hemodinâmicos e intervencionistas.',
+  tags:['1200 PSI','Conector Valvulado','120 cm']},
+ {eye:'Linha Hemodinâmica',title:'Torneira de 3 Vias',img:'/assets/img/produto-torneira.png',
+  desc:'Torneira de três vias para controle e direcionamento do fluxo de soluções em procedimentos de cateterismo e hemodinâmica. Livre de látex, estéril e de uso único.',
+  tags:['3 vias','Livre de látex','Uso único']},
+ {eye:'Linha Hemodinâmica',title:'Válvula Hemostática',img:'/assets/img/produto-valvula.png',
+  desc:'Válvula hemostática com conectores Y e rosca para vedação hermética durante procedimentos endovasculares. Permite a passagem de guias e cateteres com mínimo sangramento.',
+  tags:['Conector Y','Rosca','Uso único']}
 ];
 const N=PRODUCTS.length; let idx=0;
 const stage=document.getElementById('stage'), dots=document.getElementById('dots');
@@ -122,18 +134,59 @@ document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',
   addEventListener('resize',reveal);
 })();
 
-// ---- contact form → WhatsApp ----
+// ---- contact form ----
 (function(){
   const form=document.getElementById('ctaForm');
   if(!form) return;
-  form.addEventListener('submit',e=>{
+  const btn=document.getElementById('cfSubmit');
+  const feedback=document.getElementById('cfFeedback');
+
+  function setLoading(on){
+    btn.disabled=on;
+    btn.classList.toggle('loading',on);
+    btn.querySelector('.btn-txt').textContent=on?'Enviando…':'Enviar mensagem';
+  }
+
+  function showFeedback(type,msg){
+    feedback.textContent=msg;
+    feedback.className='cf-feedback cf-'+type;
+    feedback.hidden=false;
+  }
+
+  form.addEventListener('submit',async e=>{
     e.preventDefault();
     const nome=document.getElementById('cf-nome').value.trim();
+    const empresa=document.getElementById('cf-empresa').value.trim();
     const email=document.getElementById('cf-email').value.trim();
-    const tel=document.getElementById('cf-tel').value.trim();
-    const msg=document.getElementById('cf-msg').value.trim();
-    const text=encodeURIComponent(`Olá! Meu nome é ${nome} (${email}${tel?', '+tel:''}).\n\n${msg}`);
-    window.open(`https://wa.me/5500000000000?text=${text}`,'_blank');
+    const telefone=document.getElementById('cf-tel').value.trim();
+    const assunto=document.getElementById('cf-assunto').value.trim();
+    const mensagem=document.getElementById('cf-msg').value.trim();
+
+    if(!nome){showFeedback('error','Por favor, informe o seu nome.');return;}
+    if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showFeedback('error','Por favor, informe um e-mail válido.');return;}
+    if(!mensagem){showFeedback('error','Por favor, escreva a sua mensagem.');return;}
+
+    setLoading(true);
+    feedback.hidden=true;
+
+    try{
+      const res=await fetch('/api/contact',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({nome,empresa,email,telefone,assunto,mensagem}),
+      });
+      const data=await res.json();
+      if(res.ok){
+        form.reset();
+        showFeedback('success','A sua mensagem foi enviada com sucesso. Entraremos em contacto em breve.');
+      }else{
+        showFeedback('error',data.error||'Não foi possível enviar a sua mensagem. Tente novamente.');
+      }
+    }catch{
+      showFeedback('error','Não foi possível enviar a sua mensagem. Tente novamente dentro de alguns instantes.');
+    }finally{
+      setLoading(false);
+    }
   });
 })();
 

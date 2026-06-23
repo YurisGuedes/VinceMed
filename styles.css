@@ -195,6 +195,15 @@ br.hero-br{display:block}
   transition:border-color .25s;resize:none}
 .cform-field input::placeholder,.cform-field textarea::placeholder{color:rgba(255,255,255,.38)}
 .cform-field input:focus,.cform-field textarea:focus{border-color:rgba(255,255,255,.55)}
+.cf-feedback{padding:13px 16px;border-radius:9px;font-size:.9rem;font-weight:500;line-height:1.5}
+.cf-feedback[hidden]{display:none}
+.cf-success{background:rgba(23,200,140,.15);color:#5fffc4;border:1px solid rgba(23,200,140,.3)}
+.cf-error{background:rgba(255,80,80,.12);color:#ffaaaa;border:1px solid rgba(255,80,80,.25)}
+.btn-spin{display:none}
+.btn.loading .btn-spin{display:block;animation:spin .7s linear infinite}
+.btn.loading .btn-icon{display:none}
+.btn.loading{opacity:.75;pointer-events:none}
+@keyframes spin{to{transform:rotate(360deg)}}
 /* WhatsApp floating button */
 .wa-btn{position:fixed;bottom:28px;right:28px;z-index:60;width:58px;height:58px;border-radius:50%;
   background:#25D366;color:#fff;display:grid;place-items:center;
@@ -250,9 +259,13 @@ br.hero-br{display:block}
 
 /* responsive */
 @media(max-width:920px){
-  .nav-links,.nav-right .lang{display:none}
+  .nav-links{display:none}
   .nav-inner{grid-template-columns:auto 1fr auto}
   .brand-center{justify-self:start}
+  .brand-center img{height:26px}
+  .brand-word{font-size:1rem}
+  .nav-right{gap:10px}
+  .nav-right .btn-line{padding:.55rem .9rem;font-size:.82rem}
   .hamb{display:flex}
   .shead{grid-template-columns:1fr;gap:18px}
   .shead .lead{justify-self:start}
