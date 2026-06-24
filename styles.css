@@ -118,8 +118,6 @@ br.hero-br{display:block}
   transform:translate(-50%,-50%);transition:transform .65s cubic-bezier(.3,.7,.2,1),opacity .6s,filter .6s;
   overflow:hidden;box-shadow:var(--shadow);cursor:pointer;background:#0e1c28}
 .pcard img{width:100%;height:100%;object-fit:cover;filter:saturate(.92) brightness(.92)}
-.pcard .povl{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,18,28,.05) 40%,rgba(8,18,28,.8))}
-.pcard .plabel{position:absolute;left:22px;bottom:22px;color:#fff;font-weight:700;font-size:1.25rem;letter-spacing:-.01em}
 .pcard .parrow{position:absolute;top:16px;right:16px;width:42px;height:42px;border-radius:50%;
   background:rgba(255,255,255,.92);display:grid;place-items:center;color:var(--ink)}
 .pcard.pos-center{transform:translate(-50%,-50%) scale(1);opacity:1;z-index:5}
@@ -355,8 +353,6 @@ br.hero-br{display:block}
 :root{--ease:cubic-bezier(.2,.7,.2,1)}
 .pcard{transition:transform .65s var(--ease),opacity .6s,filter .6s,box-shadow .45s var(--ease)}
 .pcard.pos-center:hover{transform:translate(-50%,calc(-50% - 6px)) scale(1.012);box-shadow:0 34px 80px -34px rgba(16,40,60,.55)}
-.pcard .parrow{transition:transform .35s var(--ease),background .35s}
-.pcard.pos-center:hover .parrow{transform:rotate(45deg)}
 .plist span{transition:border-color .3s var(--ease),transform .3s var(--ease)}
 .plist span:hover{border-color:var(--accent);transform:translateY(-2px)}
 .acc-q{transition:color .3s var(--ease)}
