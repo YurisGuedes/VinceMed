@@ -5,7 +5,7 @@ const { Resend } = require('resend');
 // e altere FROM_ADDRESS para 'VinceMed <noreply@vincemed.com.br>'
 const CONFIG = {
   fromAddress: 'VinceMed <onboarding@resend.dev>',
-  toAddress: 'kleberguedes@medicallifehospitalar.com',
+  toAddress: 'contato@vincemed.com.br',
   companyName: 'VinceMed',
 };
 
