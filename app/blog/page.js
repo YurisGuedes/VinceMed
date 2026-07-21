@@ -1,6 +1,5 @@
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import ArticleCard from '@/components/blog/ArticleCard'
 import FeaturedArticle from '@/components/blog/FeaturedArticle'
 import CategoryFilter from '@/components/blog/CategoryFilter'
 import { getAllArticles, getFeaturedArticle, getAllCategories } from '@/lib/sanity'
@@ -34,7 +33,6 @@ export default async function BlogPage() {
       <Header />
 
       <main>
-        {/* Intro */}
         <section className="blog-intro full">
           <div className="wrap">
             <span className="eyebrow">Conteúdos Vincemed</span>
@@ -46,32 +44,13 @@ export default async function BlogPage() {
           </div>
         </section>
 
-        {/* Conteúdo */}
         <section className="blog-section full">
           <div className="wrap">
 
-            {/* Artigo em destaque */}
             {featured && <FeaturedArticle article={featured} />}
 
-            {/* Grade de artigos com filtro por categoria */}
             {nonFeatured.length > 0 ? (
-              <CategoryFilter categories={categories} articles={nonFeatured}>
-                {(filtered) =>
-                  filtered.length > 0 ? (
-                    <div className="article-grid">
-                      {filtered.map(article => (
-                        <ArticleCard key={article._id} article={article} />
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="blog-empty">
-                      <div className="icon">🔍</div>
-                      <h3>Nenhum artigo nesta categoria</h3>
-                      <p>Tente outra categoria ou veja todos os artigos.</p>
-                    </div>
-                  )
-                }
-              </CategoryFilter>
+              <CategoryFilter categories={categories} articles={nonFeatured} />
             ) : !featured ? (
               <div className="blog-empty">
                 <div className="icon">✍️</div>

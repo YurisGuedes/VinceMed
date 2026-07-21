@@ -1,7 +1,8 @@
 'use client'
 import { useState } from 'react'
+import ArticleCard from './ArticleCard'
 
-export default function CategoryFilter({ categories, articles, children }) {
+export default function CategoryFilter({ categories, articles }) {
   const [active, setActive] = useState(null)
 
   const filtered = active
@@ -26,7 +27,19 @@ export default function CategoryFilter({ categories, articles, children }) {
           ))}
         </div>
       )}
-      {children(filtered)}
+      {filtered.length > 0 ? (
+        <div className="article-grid">
+          {filtered.map(article => (
+            <ArticleCard key={article._id} article={article} />
+          ))}
+        </div>
+      ) : (
+        <div className="blog-empty">
+          <div className="icon">🔍</div>
+          <h3>Nenhum artigo nesta categoria</h3>
+          <p>Tente outra categoria ou veja todos os artigos.</p>
+        </div>
+      )}
     </>
   )
 }
