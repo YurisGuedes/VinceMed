@@ -1,0 +1,274 @@
+'use client'
+import { useEffect } from 'react'
+import { initHome } from '@/lib/homeInit'
+import { CONTACT } from '@/lib/constants'
+
+export default function HomeClient() {
+  useEffect(() => {
+    return initHome()
+  }, [])
+
+  return (
+    <>
+      {/* NAV */}
+      <nav className="nav over" id="nav">
+        <div className="nav-inner">
+          <div className="nav-links">
+            <a href="#topo" className="active" data-i18n="nav.home">Início</a>
+            <a href="#sobre" data-i18n="nav.about">Sobre</a>
+            <a href="#produtos" data-i18n="nav.products">Produtos</a>
+            <a href="/blog">Blog</a>
+          </div>
+          <a href="#topo" className="brand-center">
+            <img className="mc" src="/assets/logo/mark.png" alt="VinceMed" />
+            <img className="mw" src="/assets/logo/mark-white.png" alt="VinceMed" />
+            <span className="brand-word"><span className="b1">Vince</span><span className="b2">Med</span></span>
+          </a>
+          <div className="nav-right">
+            <div className="lang"><button className="on">PT</button><span>|</span><button>EN</button></div>
+            <a href="#contato" className="btn btn-line" data-i18n="nav.cta">Contato</a>
+            <button className="hamb" id="hamb" aria-label="Menu"><span></span><span></span><span></span></button>
+          </div>
+        </div>
+      </nav>
+
+      <div className="mmenu" id="mmenu">
+        <button className="close" id="mclose" aria-label="Fechar">&times;</button>
+        <a href="#topo" data-i18n="nav.home">Início</a>
+        <a href="#sobre" data-i18n="nav.about">Sobre</a>
+        <a href="#produtos" data-i18n="nav.products">Produtos</a>
+        <a href="/blog">Blog</a>
+        <a href="#contato" data-i18n="nav.cta">Contato</a>
+      </div>
+
+      {/* HERO */}
+      <header className="hero full" id="topo">
+        <div className="hero-bg"><img src="/assets/img/hero-produtos.jpg" alt="Ambiente hospitalar VinceMed" /></div>
+        <div className="hero-content">
+          <div className="wrap">
+            <div className="hero-left">
+              <h1>
+                <span className="wd" style={{transitionDelay:'.28s'}} data-i18n="hero.w1">Confiança</span>{' '}
+                <span className="wd" style={{transitionDelay:'.38s'}} data-i18n="hero.w2">em</span>
+                <br className="hero-br" />
+                <span style={{whiteSpace:'nowrap'}}>
+                  <span className="wd dim" style={{transitionDelay:'.5s'}} data-i18n="hero.w3">cada</span>{' '}
+                  <span className="wd dim" style={{transitionDelay:'.6s'}} data-i18n="hero.w4">procedimento.</span>
+                </span>
+              </h1>
+              <p data-i18n="hero.p">A VinceMed fornece correlatos hospitalares e soluções médicas de alta qualidade para hospitais, clínicas e profissionais de saúde em todo o Brasil.</p>
+              <div className="hero-actions">
+                <a href="#produtos" className="btn btn-light">
+                  <span data-i18n="hero.btn1">Conheça as linhas</span>
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
+                <a href="#contato" className="btn btn-line on-dark" data-i18n="hero.btn2">Falar com a equipe</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="#sobre" className="scroll-cue" aria-label="Rolar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+        </a>
+      </header>
+
+      {/* MANIFESTO */}
+      <section className="manifesto full" id="sobre">
+        <div className="mani-sticky">
+          <div className="mani-inner">
+            <img className="mani-glyph-img" src="/assets/logo/mark.png" alt="VinceMed" />
+            <p className="reveal-text" id="revealText"></p>
+          </div>
+        </div>
+      </section>
+
+      {/* PRODUTOS */}
+      <section className="products full" id="produtos">
+        <div className="wrap">
+          <div className="products-head fade">
+            <span className="eyebrow" data-i18n="prod.eyebrow">Linha Hemodinâmica</span>
+            <h2 className="htwo"><span data-i18n="prod.h2">Nossos</span> <span className="l2" data-i18n="prod.h2.l2">Produtos</span></h2>
+            <p className="products-sub" data-i18n="prod.sub">Soluções para hemodinâmica e cardiologia intervencionista.</p>
+          </div>
+          <div className="products-grid">
+            <div className="stage-wrap">
+              <div className="stage fade" id="stage"></div>
+              <div className="progress-bar"><div className="progress-fill" id="progressFill"></div></div>
+            </div>
+            <div className="pinfo fade d1">
+              <div className="swap" id="pswap">
+                <span className="eyebrow" id="p-eye">Linha Hemodinâmica</span>
+                <h3 id="p-title">Fio Guia PTFE</h3>
+                <p id="p-desc"></p>
+                <div className="plist" id="p-list"></div>
+              </div>
+              <a href="#contato" className="btn btn-dark">
+                <span data-i18n="prod.btn">Saiba mais</span>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <div className="carousel-ctrl">
+                <button className="arrow" id="prev" aria-label="Anterior">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <div className="dots" id="dots"></div>
+                <button className="arrow" id="next" aria-label="Próximo">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* BRASIL */}
+      <section className="brasil full">
+        <div className="wrap">
+          <div className="brasil-grid">
+            <div className="brasil-txt fade">
+              <span className="eyebrow" data-i18n="br.eyebrow">Cobertura nacional</span>
+              <h2 className="htwo"><span data-i18n="br.h2">Atendemos</span><span className="l2" data-i18n="br.h2.l2">todo o Brasil</span></h2>
+              <p data-i18n="br.p">A VinceMed possui uma estrutura preparada para atender clientes em todo o território brasileiro, com agilidade, segurança e excelência no suporte.</p>
+            </div>
+            <div className="brasil-feats fade d2">
+              <div className="feats">
+                <div className="feat">
+                  <span className="fi"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span>
+                  <div><h4 data-i18n="br.f1h">Logística eficiente</h4><p data-i18n="br.f1p">Distribuição ágil e rastreável para todas as regiões.</p></div>
+                </div>
+                <div className="feat">
+                  <span className="fi"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
+                  <div><h4 data-i18n="br.f2h">Qualidade garantida</h4><p data-i18n="br.f2p">Produtos certificados e dentro dos padrões técnicos.</p></div>
+                </div>
+                <div className="feat">
+                  <span className="fi"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M3 14v-3a9 9 0 0 1 18 0v3"/><path d="M21 16a2 2 0 0 1-2 2h-1v-5h1a2 2 0 0 1 2 2zM3 16a2 2 0 0 0 2 2h1v-5H5a2 2 0 0 0-2 2z"/><path d="M19 18v1a3 3 0 0 1-3 3h-3"/></svg></span>
+                  <div><h4 data-i18n="br.f3h">Suporte especializado</h4><p data-i18n="br.f3p">Equipe técnica pronta para orientar e acompanhar.</p></div>
+                </div>
+              </div>
+            </div>
+            <div className="brasil-map fade d1">
+              <img src="/assets/img/mapa.png" alt="Mapa de cobertura nacional VinceMed" loading="lazy" />
+              <span className="map-cap" data-i18n="br.map">Presença em todas as regiões do país</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="faq full">
+        <div className="wrap">
+          <div className="shead fade">
+            <div>
+              <span className="eyebrow" data-i18n="faq.eyebrow">Dúvidas frequentes</span>
+              <h2 className="htwo"><span data-i18n="faq.h2">Tudo o que você</span><span className="l2" data-i18n="faq.h2.l2">precisa saber</span></h2>
+            </div>
+            <p className="lead" data-i18n="faq.lead">Reunimos as perguntas mais comuns de quem busca um parceiro confiável em produtos médicos.</p>
+          </div>
+          <div className="acc fade" id="acc">
+            {[
+              ['faq.q1','faq.a1','Como funciona o atendimento da VinceMed?','Atuamos como distribuidora de produtos médicos, atendendo instituições de saúde, clínicas e revendas. O contato inicial pode ser feito pelo formulário ou diretamente com a nossa equipe comercial.'],
+              ['faq.q2','faq.a2','Vocês atendem todo o Brasil?','Sim. A VinceMed atua em todo o território nacional e conta com presença operacional em cinco estados.'],
+              ['faq.q3','faq.a3','Quais linhas de produtos vocês oferecem?','Oferecemos um portfólio completo de produtos médicos para atender às principais demandas do setor da saúde.'],
+              ['faq.q4','faq.a4','Como solicito um orçamento?','Solicitar um orçamento é simples. Basta preencher o formulário disponível no site.'],
+            ].map(([qKey, aKey, qDefault, aDefault]) => (
+              <div className="acc-item" key={qKey}>
+                <button className="acc-q"><span data-i18n={qKey}>{qDefault}</span><span className="ico"></span></button>
+                <div className="acc-a"><p data-i18n={aKey}>{aDefault}</p></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="ctaband full" id="contato">
+        <div className="ctaband-bg"><img src="/assets/img/cta-equipe.jpg" alt="" /></div>
+        <div className="wrap">
+          <div className="cta-left">
+            <span className="eyebrow on-dark" data-i18n="cta.eyebrow">Vamos conversar</span>
+            <h2 className="htwo" style={{marginTop:'16px'}}><span data-i18n="cta.h2">Fale com a</span><span className="l2" data-i18n="cta.h2.l2">nossa equipe</span></h2>
+            <p data-i18n="cta.p">Estamos prontos para entender as suas necessidades e oferecer as melhores soluções para o seu negócio.</p>
+          </div>
+          <form className="cta-form" id="ctaForm" noValidate>
+            <div className="cform-row">
+              <div className="cform-field">
+                <label htmlFor="cf-nome" data-i18n="form.name">Nome completo *</label>
+                <input type="text" id="cf-nome" placeholder="Seu nome" data-i18n-ph="form.ph.name" required />
+              </div>
+              <div className="cform-field">
+                <label htmlFor="cf-email" data-i18n="form.email">E-mail *</label>
+                <input type="email" id="cf-email" placeholder="seu@email.com" data-i18n-ph="form.ph.email" required />
+              </div>
+            </div>
+            <div className="cform-row">
+              <div className="cform-field">
+                <label htmlFor="cf-tel" data-i18n="form.phone">Telefone</label>
+                <input type="tel" id="cf-tel" placeholder="+55 (00) 00000-0000" data-i18n-ph="form.ph.phone" />
+              </div>
+              <div className="cform-field">
+                <label htmlFor="cf-empresa" data-i18n="form.company">Empresa</label>
+                <input type="text" id="cf-empresa" placeholder="Nome da empresa" data-i18n-ph="form.ph.company" />
+              </div>
+            </div>
+            <div className="cform-field">
+              <label htmlFor="cf-assunto" data-i18n="form.subject">Assunto</label>
+              <input type="text" id="cf-assunto" placeholder="Como podemos ajudar?" data-i18n-ph="form.ph.subject" />
+            </div>
+            <div className="cform-field">
+              <label htmlFor="cf-msg" data-i18n="form.message">Mensagem *</label>
+              <textarea id="cf-msg" rows={4} placeholder="Descreva a sua necessidade..." data-i18n-ph="form.ph.msg" required></textarea>
+            </div>
+            <div className="cf-feedback" id="cfFeedback" hidden></div>
+            <button type="submit" className="btn btn-light" id="cfSubmit">
+              <span className="btn-txt">Enviar mensagem</span>
+              <svg className="btn-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <svg className="btn-spin" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><circle cx="12" cy="12" r="10" strokeOpacity=".3"/><path d="M12 2a10 10 0 0 1 10 10"/></svg>
+            </button>
+          </form>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="footer full">
+        <div className="wrap">
+          <div className="foot-grid">
+            <div className="foot-brand">
+              <img src="/assets/logo/logo-white.png" alt="VinceMed" />
+              <p data-i18n="foot.brand">Soluções médicas com qualidade, confiança, tecnologia e cuidado em cada detalhe.</p>
+              <div className="socials">
+                <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.5 8h4V24h-4zM8.5 8h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7c0-1.67-.03-3.8-2.3-3.8s-2.65 1.8-2.65 3.67V24h-4z"/></svg></a>
+                <a href={CONTACT.instagram} target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+                <a href="#" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 5 12 5 12 5s-7 0-8.9.4A3 3 0 0 0 1 7.5 31 31 0 0 0 .7 12 31 31 0 0 0 1 16.5a3 3 0 0 0 2.1 2.1C5 19 12 19 12 19s7 0 8.9-.4a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .3-4.5 31 31 0 0 0-.3-4.5zM9.7 15.3V8.7l5.7 3.3z"/></svg></a>
+              </div>
+            </div>
+            <div><h5 data-i18n="foot.nav">Navegação</h5><ul><li><a href="#topo" data-i18n="foot.home">Início</a></li><li><a href="#sobre" data-i18n="foot.about">Sobre</a></li><li><a href="#produtos">Produtos</a></li><li><a href="/blog">Blog</a></li><li><a href="#contato">Contato</a></li></ul></div>
+            <div><h5 data-i18n="foot.products">Produtos</h5><ul><li><a href="#produtos">Fio Guia PTFE</a></li><li><a href="#produtos">Insuflador de Balão</a></li><li><a href="#produtos">Manifold Vincemed</a></li><li><a href="#produtos">Pulseira de Compressão Radial</a></li><li><a href="#produtos">Cateter IV Periférico</a></li><li><a href="#produtos">Linha de Extensão Alta Pressão</a></li><li><a href="#produtos">Torneira de 3 Vias</a></li><li><a href="#produtos">Válvula Hemostática</a></li></ul></div>
+            <div>
+              <h5 data-i18n="foot.contact">Contato</h5>
+              <ul>
+                <li><a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener">{CONTACT.whatsappDisplay}</a></li>
+                <li>{CONTACT.email}</li>
+              </ul>
+            </div>
+          </div>
+          <div className="foot-bottom">
+            <div className="legal">
+              <a href="#" data-i18n="foot.legal1">Política de Privacidade</a>
+              <a href="#" data-i18n="foot.legal2">Termos de Uso</a>
+              <a href="/admin" style={{opacity:.4,fontSize:'.78rem'}}>Área de publicação</a>
+            </div>
+            <div className="lang-f"><span className="on">PT</span> | <span>EN</span></div>
+            <div className="copy">© 2026 MEDICAL LIFE COMERCIO DE PRODUTOS HOSPITALARES LTDA · CNPJ 14.361.780/0001-00<br />Responsável Técnico: Monik Hayckel Gomes Silva · CRF/PI 1344</div>
+            <a href="https://www.two7.com.br/" target="_blank" rel="noopener" className="made-by" aria-label="Design by Two7">
+              <span>Design by</span>
+              <img src="/assets/logo/two7-logo-rgb-04.png" alt="Two7" height="16" />
+            </a>
+          </div>
+        </div>
+      </footer>
+
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} className="wa-btn" target="_blank" rel="noopener" aria-label="WhatsApp VinceMed">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+      </a>
+    </>
+  )
+}

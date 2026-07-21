@@ -1,17 +1,26 @@
 {
   "name": "vincemed-site",
   "private": true,
-  "version": "1.0.0",
-  "description": "Site institucional VinceMed — distribuidora de produtos médicos",
+  "version": "2.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "vite": "^5.4.0"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
+    "next": "^15.3.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@sanity/client": "^6.22.0",
+    "@sanity/image-url": "^1.1.0",
+    "next-sanity": "^9.8.0",
+    "@portabletext/react": "^3.2.0",
     "resend": "^6.14.0"
+  },
+  "devDependencies": {
+    "eslint": "^9",
+    "eslint-config-next": "^15.3.0"
   }
 }
